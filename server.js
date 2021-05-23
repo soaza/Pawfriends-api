@@ -1,56 +1,36 @@
-const express  = require('express');
-
+const cors = require("cors");
+const express = require("express");
 const app = express();
-const cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
 
-const port = 3001
+const dogs = require("./controllers/Dogs/dog_api");
+const cms = require("./controllers/CMS/cms_api");
 
-app.listen(port,() => {
-	console.log(`app is running on port ${port} `)
-})
+const port = 3001;
 
-app.use(function (req, res, next) {
+app.listen(port, () => {
+  console.log(`app is running on port ${port} `);
+});
 
-  console.log(req.method + ' ' + req.url + ' HTTP/' + req.httpVersion);
-  console.log('-----------')
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.url + " HTTP/" + req.httpVersion);
+  console.log("-----------");
   next();
 });
 
-const Pool = require('pg').Pool
+const Pool = require("pg").Pool;
 const pool = new Pool({
-  database: 'pawfriends',
+  database: "pawfriends",
   port: 5432,
-})
+});
 
-const getDogs = (request, response) => {
-    const query = 'SELECT * FROM database_dogs'
-    pool.query(query, (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-  }
+module.exports = { pool };
 
-const getUser = (request, response) => {
-  const username = 'pawfriends_admin'
-  const password = 'maple123dd'
-  const query = `SELECT * FROM database_cms_account WHERE username = $1 AND user_password = $2`
-  console.log(query)
-  pool.query(query,[username,password],(error,results) => {
-    if (error) {
-       console.log(error)
-       response.status(404).json({response:'Error'})
-    } else {
-      if(results.rows.length == 0)  response.status(404).json({response:'User not found'})
-      else response.status(200).json(results.rows)
-    }
-  })
-}
-
-
-app.get('/dogs', getDogs)
-app.get('/login',getUser)
+app.get("/dogs", (req, res) => {
+  dogs.getDogs(req, res, pool);
+});
+app.get("/login", (req, res) => {
+  cms.getUser(req, res, pool);
+});
