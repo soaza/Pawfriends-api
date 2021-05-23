@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase": "^8.6.1",
     "knex": "^0.95.4",
     "pg": "^8.6.0"
   },
