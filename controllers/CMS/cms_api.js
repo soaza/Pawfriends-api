@@ -44,7 +44,39 @@ const updateDog = (request, response, pool) => {
   );
 };
 
+const updateExco = (request, response, pool) => {
+  const excoInfo = request.query;
+
+  const exco_id = excoInfo.exco_id ? parseInt(excoInfo.exco_id) : null;
+  const exco_name = excoInfo.exco_name;
+  const exco_year_of_study = excoInfo.exco_year_of_study
+    ? excoInfo.exco_year_of_study
+    : null;
+  const exco_hobbies = excoInfo.exco_hobbies;
+  const exco_favourite_dog = excoInfo.exco_favourite_dog;
+
+  const query = `
+  UPDATE database_exco 
+  SET exco_name = nullif($2, 'NaN'), 
+  exco_year_of_study = $3, 
+  exco_hobbies = $4,
+  exco_favourite_dog = $5
+  WHERE exco_id = $1 `;
+
+  pool.query(
+    query,
+    [exco_id, exco_name, exco_year_of_study, exco_hobbies, exco_favourite_dog],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json({ success: true });
+    }
+  );
+};
+
 module.exports = {
   getUser,
   updateDog,
+  updateExco,
 };

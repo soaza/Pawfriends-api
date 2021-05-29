@@ -6,6 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 const dogs = require("./controllers/Dogs/dog_api");
+const excos = require("./controllers/Exco/exco_api");
 const cms = require("./controllers/CMS/cms_api");
 
 const port = 3001;
@@ -32,10 +33,16 @@ module.exports = { pool };
 app.get("/dogs", (req, res) => {
   dogs.getDogs(req, res, pool);
 });
+app.get("/excos", (req, res) => {
+  excos.getExcos(req, res, pool);
+});
 
 // CMS
 app.patch("/update/dog", (req, res) => {
   cms.updateDog(req, res, pool);
+});
+app.patch("/update/exco", (req, res) => {
+  cms.updateExco(req, res, pool);
 });
 app.get("/login", (req, res) => {
   cms.getUser(req, res, pool);
