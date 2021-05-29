@@ -28,8 +28,14 @@ const pool = new Pool({
 
 module.exports = { pool };
 
+// Main
 app.get("/dogs", (req, res) => {
   dogs.getDogs(req, res, pool);
+});
+
+// CMS
+app.patch("/update/dog", (req, res) => {
+  cms.updateDog(req, res, pool);
 });
 app.get("/login", (req, res) => {
   cms.getUser(req, res, pool);
