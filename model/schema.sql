@@ -5,10 +5,12 @@ CREATE TABLE database_dogs(
     dog_age INTEGER
 );
 
-CREATE TABLE database_dog_characteristics(
-    id INTEGER PRIMARY KEY,
-    dog_name TEXT,
-    characteristic TEXT
+CREATE TABLE database_exco(
+    exco_id INTEGER PRIMARY KEY,
+    exco_name TEXT,
+    exco_year_of_study INTEGER,
+    exco_hobbies TEXT,
+    exco_favourite_dog TEXT
 );
 
 CREATE TABLE database_dog_image(

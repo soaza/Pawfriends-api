@@ -22,12 +22,19 @@ const updateDog = (request, response, pool) => {
   const dog_name = dogInfo.dog_name;
   const dog_gender = dogInfo.dog_gender;
   const dog_age = dogInfo.dog_age ? parseInt(dogInfo.dog_age) : null;
-  console.log(dogInfo);
+  const dog_characteristics = dogInfo.dog_characteristics;
 
-  const query = `UPDATE database_dogs SET dog_name = $2, dog_gender = $3, dog_age = $4 WHERE dog_id = $1 `;
+  const query = `
+  UPDATE database_dogs 
+  SET dog_name = nullif($2, 'NaN'), 
+  dog_gender = nullif($3, 'NaN'), 
+  dog_age = $4, 
+  dog_characteristics = nullif($5, 'NaN')
+  WHERE dog_id = $1 `;
+
   pool.query(
     query,
-    [dog_id, dog_name, dog_gender, dog_age],
+    [dog_id, dog_name, dog_gender, dog_age, dog_characteristics],
     (error, results) => {
       if (error) {
         throw error;
