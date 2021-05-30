@@ -12,3 +12,5 @@ INSERT INTO database_exco VALUES(1,'Exco 1',1,'Hobby 1','Lucky');
 INSERT INTO database_exco VALUES(2,'Exco 1',1,'Hobby 1','Lucky');
 INSERT INTO database_exco VALUES(3,'Exco 1',1,'Hobby 1','Lucky');
 INSERT INTO database_exco VALUES(4,'Exco 1',1,'Hobby 1','Lucky');
+
+INSERT INTO database_main_page VALUES('Hi,Welcome to Pawfriends!');

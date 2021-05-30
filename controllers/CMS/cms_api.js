@@ -75,8 +75,26 @@ const updateExco = (request, response, pool) => {
   );
 };
 
+const updateMainPageDescription = (request, response, pool) => {
+  const requestBody = request.query;
+
+  const description = requestBody.description;
+
+  const query = `
+  UPDATE database_main_page 
+  SET pawfriends_description = $1 `;
+
+  pool.query(query, [description], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json({ success: true });
+  });
+};
+
 module.exports = {
   getUser,
   updateDog,
   updateExco,
+  updateMainPageDescription,
 };

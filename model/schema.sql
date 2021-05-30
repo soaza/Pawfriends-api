@@ -25,3 +25,12 @@ CREATE TABLE database_cms_account(
     username TEXT PRIMARY KEY,
     user_password TEXT
 );
+
+CREATE TABLE database_main_page(
+    pawfriends_description TEXT
+);
+
+CREATE TABLE database_activity_posts(
+    date_posted DATE,
+    activity_description TEXT
+);

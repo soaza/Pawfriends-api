@@ -8,6 +8,7 @@ app.use(express.json());
 const dogs = require("./controllers/Dogs/dog_api");
 const excos = require("./controllers/Exco/exco_api");
 const cms = require("./controllers/CMS/cms_api");
+const mainpage = require("./controllers/MainPage/main_page_api");
 
 const port = 3001;
 
@@ -29,12 +30,15 @@ const pool = new Pool({
 
 module.exports = { pool };
 
-// Main
+// General
 app.get("/dogs", (req, res) => {
   dogs.getDogs(req, res, pool);
 });
 app.get("/excos", (req, res) => {
   excos.getExcos(req, res, pool);
+});
+app.get("/mainpage", (req, res) => {
+  mainpage.getDescription(res, pool);
 });
 
 // CMS
@@ -43,6 +47,9 @@ app.patch("/update/dog", (req, res) => {
 });
 app.patch("/update/exco", (req, res) => {
   cms.updateExco(req, res, pool);
+});
+app.patch("/update/mainpage", (req, res) => {
+  cms.updateMainPageDescription(req, res, pool);
 });
 app.get("/login", (req, res) => {
   cms.getUser(req, res, pool);
