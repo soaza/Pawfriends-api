@@ -92,9 +92,34 @@ const updateMainPageDescription = (request, response, pool) => {
   });
 };
 
+const updatePost = (request, response, pool) => {
+  const postInfo = request.query;
+
+  const post_id = postInfo.post_id ? parseInt(postInfo.post_id) : null;
+  const date_posted = postInfo.date_posted ? postInfo.date_posted : null;
+  console.log(date_posted);
+  const activity_description = postInfo.activity_description
+    ? postInfo.activity_description
+    : null;
+
+  const query = `
+  UPDATE database_activity_posts 
+  SET 
+  activity_description = nullif($2, 'NaN') 
+  WHERE post_id = $1 `;
+
+  pool.query(query, [post_id, activity_description], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json({ success: true });
+  });
+};
+
 module.exports = {
   getUser,
   updateDog,
   updateExco,
   updateMainPageDescription,
+  updatePost,
 };

@@ -31,6 +31,7 @@ CREATE TABLE database_main_page(
 );
 
 CREATE TABLE database_activity_posts(
+    post_id INTEGER PRIMARY KEY,
     date_posted DATE,
     activity_description TEXT
 );

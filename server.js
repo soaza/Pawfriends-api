@@ -9,6 +9,7 @@ const dogs = require("./controllers/Dogs/dog_api");
 const excos = require("./controllers/Exco/exco_api");
 const cms = require("./controllers/CMS/cms_api");
 const mainpage = require("./controllers/MainPage/main_page_api");
+const activitypage = require("./controllers/ActivityPage/activity_page_api");
 
 const port = 3001;
 
@@ -40,6 +41,9 @@ app.get("/excos", (req, res) => {
 app.get("/mainpage", (req, res) => {
   mainpage.getDescription(res, pool);
 });
+app.get("/activities", (req, res) => {
+  activitypage.getActivityPosts(res, pool);
+});
 
 // CMS
 app.patch("/update/dog", (req, res) => {
@@ -50,6 +54,9 @@ app.patch("/update/exco", (req, res) => {
 });
 app.patch("/update/mainpage", (req, res) => {
   cms.updateMainPageDescription(req, res, pool);
+});
+app.patch("/update/activity", (req, res) => {
+  cms.updatePost(req, res, pool);
 });
 app.get("/login", (req, res) => {
   cms.getUser(req, res, pool);
