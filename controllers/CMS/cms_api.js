@@ -26,9 +26,9 @@ const updateDog = (request, response, pool) => {
 
   const query = `
   UPDATE database_dogs 
-  SET dog_name = nullif($2, 'NaN'), 
-  dog_gender = nullif($3, 'NaN'), 
-  dog_age = $4, 
+  SET dog_name = nullif($2, null), 
+  dog_gender = nullif($3, null), 
+  dog_age =  $4, 
   dog_characteristics = nullif($5, 'NaN')
   WHERE dog_id = $1 `;
 
@@ -102,7 +102,6 @@ const updatePost = (request, response, pool) => {
     : null;
   const parsed_date_posted = new Date(date_posted);
 
-  console.log(parsed_date_posted);
   const query = `
   UPDATE database_activity_posts 
   SET 
@@ -122,10 +121,30 @@ const updatePost = (request, response, pool) => {
   );
 };
 
+const postActivity = (request, response, pool) => {
+  const postInfo = request.body;
+
+  const postDate = postInfo.postDate;
+  const postDescription = postInfo.postDescription;
+
+  const query = `
+  INSERT INTO database_activity_posts(post_id,date_posted,activity_description)
+  VALUES 
+  (DEFAULT,$1,$2) `;
+
+  pool.query(query, [postDate, postDescription], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json({ success: true });
+  });
+};
+
 module.exports = {
   getUser,
   updateDog,
   updateExco,
   updateMainPageDescription,
   updatePost,
+  postActivity,
 };

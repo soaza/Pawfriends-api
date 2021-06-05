@@ -31,7 +31,8 @@ CREATE TABLE database_main_page(
 );
 
 CREATE TABLE database_activity_posts(
-    post_id INTEGER PRIMARY KEY,
-    date_posted DATE,
+    post_id SERIAL PRIMARY KEY,
+    date_posted TIMESTAMP WITH TIME ZONE,
     activity_description TEXT
 );
+
