@@ -15,19 +15,21 @@ const getUser = (request, response, pool) => {
   });
 };
 
+// Dogs APIs
 const updateDog = (request, response, pool) => {
   const dogInfo = request.query;
 
   const dog_id = dogInfo.dog_id ? parseInt(dogInfo.dog_id) : null;
   const dog_name = dogInfo.dog_name;
   const dog_gender = dogInfo.dog_gender;
-  const dog_age = dogInfo.dog_age ? parseInt(dogInfo.dog_age) : null;
+  const dog_age =
+    parseInt(dogInfo.dog_age) === NaN ? NaN : parseInt(dogInfo.dog_age);
   const dog_characteristics = dogInfo.dog_characteristics;
 
   const query = `
   UPDATE database_dogs 
-  SET dog_name = nullif($2, null), 
-  dog_gender = nullif($3, null), 
+  SET dog_name = nullif($2, 'NaN'), 
+  dog_gender = nullif($3, 'NaN'), 
   dog_age =  $4, 
   dog_characteristics = nullif($5, 'NaN')
   WHERE dog_id = $1 `;
@@ -44,6 +46,23 @@ const updateDog = (request, response, pool) => {
   );
 };
 
+const postDogImage = (request, response, pool) => {
+  const { image_url, dog_id } = request.body;
+
+  const query = `
+  INSERT INTO database_dog_image(image_id,image_url,dog_id)
+  VALUES 
+  (DEFAULT,$1,$2) `;
+
+  pool.query(query, [image_url, dog_id], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json({ success: true });
+  });
+};
+
+// Exco APIs
 const updateExco = (request, response, pool) => {
   const excoInfo = request.query;
 
@@ -75,6 +94,7 @@ const updateExco = (request, response, pool) => {
   );
 };
 
+// Main Page Apis
 const updateMainPageDescription = (request, response, pool) => {
   const requestBody = request.query;
 
@@ -121,6 +141,7 @@ const updatePost = (request, response, pool) => {
   );
 };
 
+// Activity Page Apis
 const postActivity = (request, response, pool) => {
   const postInfo = request.body;
 
@@ -143,6 +164,7 @@ const postActivity = (request, response, pool) => {
 module.exports = {
   getUser,
   updateDog,
+  postDogImage,
   updateExco,
   updateMainPageDescription,
   updatePost,

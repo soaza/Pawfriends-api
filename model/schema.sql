@@ -14,11 +14,10 @@ CREATE TABLE database_exco(
 );
 
 CREATE TABLE database_dog_image(
-    image_id INTEGER,
+    image_id SERIAL PRIMARY KEY,
     image_url TEXT,
     dog_id INTEGER,
-    FOREIGN KEY(dog_id) REFERENCES database_dogs(dog_id),
-    PRIMARY KEY(image_id,dog_id)
+    FOREIGN KEY(dog_id) REFERENCES database_dogs(dog_id)
 );
 
 CREATE TABLE database_cms_account(

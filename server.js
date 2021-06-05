@@ -45,7 +45,7 @@ app.post("/upload", (request, response) => {
       const path = files.file[0].path;
       const buffer = fs.readFileSync(path);
       const type = await fileType.fromBuffer(buffer);
-      const fileName = `bucketFolder/${Date.now().toString()}`;
+      const fileName = `Images/${Date.now().toString()}`;
       const data = await uploadFile(buffer, fileName, type);
 
       return response.status(200).send(data);
@@ -93,6 +93,9 @@ app.get("/activities", (req, res) => {
 // CMS
 app.patch("/update/dog", (req, res) => {
   cms.updateDog(req, res, pool);
+});
+app.post("/post/dog_image", (req, res) => {
+  cms.postDogImage(req, res, pool);
 });
 app.patch("/update/exco", (req, res) => {
   cms.updateExco(req, res, pool);
