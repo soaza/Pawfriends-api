@@ -47,14 +47,14 @@ const updateDog = (request, response, pool) => {
 };
 
 const postDogImage = (request, response, pool) => {
-  const { image_url, dog_id } = request.body;
+  const { image_url, dog_id, gallery_position } = request.body;
 
   const query = `
-  INSERT INTO database_dog_image(image_id,image_url,dog_id)
+  INSERT INTO database_dog_image(image_id,image_url,dog_id,gallery_position)
   VALUES 
-  (DEFAULT,$1,$2) `;
+  (DEFAULT,$1,$2,$3) `;
 
-  pool.query(query, [image_url, dog_id], (error, results) => {
+  pool.query(query, [image_url, dog_id, gallery_position], (error, results) => {
     if (error) {
       throw error;
     }
