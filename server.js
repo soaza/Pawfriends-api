@@ -68,11 +68,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Deployment settings
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  database: "pawfriends",
-  port: 5432,
+  host: process.env.DATABASE_URL,
+  ssl: true,
 });
+
+// const pool = new Pool({
+//   database: "pawfriends",
+//   port: 5432,
+// });
 
 module.exports = { pool };
 

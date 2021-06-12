@@ -2,7 +2,8 @@ CREATE TABLE database_dogs(
     dog_id INTEGER PRIMARY KEY,
     dog_name TEXT,
     dog_gender TEXT,
-    dog_age INTEGER
+    dog_age INTEGER,
+    dog_characteristics TEXT
 );
 
 CREATE TABLE database_exco(
@@ -10,7 +11,8 @@ CREATE TABLE database_exco(
     exco_name TEXT,
     exco_year_of_study INTEGER,
     exco_hobbies TEXT,
-    exco_favourite_dog TEXT
+    exco_favourite_dog TEXT,
+    exco_role TEXT
 );
 
 CREATE TABLE database_dog_image(
