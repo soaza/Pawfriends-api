@@ -76,6 +76,10 @@ const pool = new Pool({
 
 module.exports = { pool };
 
+app.get("/", (req, res) => {
+  res.send("Server live!");
+});
+
 // General
 app.get("/dogs", (req, res) => {
   dogs.getDogs(req, res, pool);
