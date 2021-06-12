@@ -58,8 +58,8 @@ app.post("/upload", (request, response) => {
 
 const port = 3001;
 
-app.listen(port, () => {
-  console.log(`app is running on port ${port} `);
+app.listen(process.env.PORT || port, () => {
+  console.log(`app is running on port ${process.env.PORT} `);
 });
 
 app.use((req, res, next) => {
