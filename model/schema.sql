@@ -19,6 +19,7 @@ CREATE TABLE database_dog_image(
     image_id SERIAL PRIMARY KEY,
     image_url TEXT,
     dog_id INTEGER,
+    gallery_position INTEGER,
     FOREIGN KEY(dog_id) REFERENCES database_dogs(dog_id)
 );
 

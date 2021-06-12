@@ -36,3 +36,18 @@ INSERT INTO database_main_page VALUES('  <p>
 INSERT INTO database_activity_posts VALUES (DEFAULT,null,'We walked Hugo today!');
 INSERT INTO database_activity_posts VALUES (DEFAULT,null,'We walked Lucky today!');
 INSERT INTO database_activity_posts VALUES (DEFAULT,current_timestamp,'We walked Rambo today!');
+
+INSERT INTO database_dog_image VALUES (2,'https://pawfriends-images-host.s3.amazonaws.com/Images/1622902717034.png',1,0);	
+INSERT INTO database_dog_image VALUES (3,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1622902798337.jpg',1,0);	
+INSERT INTO database_dog_image VALUES (10,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623326395438.jpg',1,0);	
+INSERT INTO database_dog_image VALUES (8,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623065719833.jpg',1,1);
+INSERT INTO database_dog_image VALUES (11,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623329080997.jpg',1,0);	
+INSERT INTO database_dog_image VALUES (12,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623330001223.jpg',1,3);	
+INSERT INTO database_dog_image VALUES (13,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623330080266.jpg',1,2);	
+INSERT INTO database_dog_image VALUES (7,'https://pawfriends-images-host.s3.amazonaws.com/Images/1623065443594.jpg',1,0);
+INSERT INTO database_dog_image VALUES (9,'https://pawfriends-images-host.s3.amazonaws.com/Images/1623326335123.jpg',1,0);
+INSERT INTO database_dog_image VALUES (4,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1622903254327.jpg',2,0);	
+INSERT INTO database_dog_image VALUES (14,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623338419171.jpg',2,1);	
+INSERT INTO database_dog_image VALUES (5,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1622903320465.jpg',3,0);	
+INSERT INTO database_dog_image VALUES (15,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1623338469204.jpg',3,1);	
+INSERT INTO database_dog_image VALUES (6,'https://pawfriends-images-host.s3.ap-southeast-1.amazonaws.com/Images/1622903333112.jpg',4,0);
