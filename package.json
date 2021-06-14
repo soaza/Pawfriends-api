@@ -12,6 +12,7 @@
     "firebase": "^8.6.1",
     "knex": "^0.95.4",
     "multiparty": "^4.2.2",
+    "newrelic": "^7.5.0",
     "pg": "^8.6.0"
   },
   "devDependencies": {
